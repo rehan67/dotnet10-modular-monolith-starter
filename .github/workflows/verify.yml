@@ -1,0 +1,25 @@
+name: verify
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_DB: educore_modular
+          POSTGRES_USER: lab
+          POSTGRES_PASSWORD: local-only-change-me
+        ports: ["5434:5432"]
+        options: --health-cmd "pg_isready -U lab -d educore_modular" --health-interval 2s --health-timeout 2s --health-retries 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.402'
+      - run: dotnet restore EduCore.slnx --locked-mode
+      - run: dotnet test EduCore.slnx --no-restore
+        env:
+          TEST_POSTGRES: Host=localhost;Port=5434;Database=educore_modular;Username=lab;Password=local-only-change-me

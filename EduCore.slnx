@@ -1,0 +1,1 @@
+<Solution><Project Path="src/Contracts/Contracts.csproj" /><Project Path="src/Courses/Courses.csproj" /><Project Path="src/Enrollments/Enrollments.csproj" /><Project Path="src/Notifications/Notifications.csproj" /><Project Path="src/Host/Host.csproj" /><Project Path="tests/Tests.csproj" /></Solution>
