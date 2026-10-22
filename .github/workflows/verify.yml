@@ -16,7 +16,7 @@ jobs:
         options: --health-cmd "pg_isready -U lab -d educore_modular" --health-interval 2s --health-timeout 2s --health-retries 30
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v4
+      - uses: actions/setup-dotnet@v6
         with:
           dotnet-version: '10.0.402'
       - run: dotnet tool restore
