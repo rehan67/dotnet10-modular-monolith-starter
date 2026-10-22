@@ -43,3 +43,7 @@ Unauthenticated local demonstration: do not expose the host publicly without aut
 
 ## Reset
 Stop the host and run docker compose down -v to delete this kit's disposable data. All three .NET references use loopback port 5434; run one compose stack at a time.
+
+## Code formatting
+
+Run `dotnet tool restore`, then `dotnet csharpier format .` to format C# and project XML. Run `dotnet csharpier check .` to verify; CI enforces the pinned formatter. The local tool can roll forward to the installed .NET 10 runtime.
